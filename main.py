@@ -25,7 +25,7 @@ def from_base_to_dec(num: str, base: int) -> float:
     return result_number
 
 
-def dec_to_base(num: int, base: int = 10, float_part_symbol_limit=300) -> str:
+def from_dec_to_base(num: int, base: int = 10, float_part_symbol_limit=300) -> str:
     if base > len(ALPHABET):
         raise ValueError("Very big base")
 
@@ -57,11 +57,24 @@ def convert_number_from_one_base_to_another(source_number: str, from_base, to_ba
     if to_base == 10:
         return str(number)
     else:
-        return dec_to_base(number, to_base)
+        return from_dec_to_base(number, to_base)
 
 
 if __name__ == '__main__':
-    number = input(">>> Enter a number: ")
-    from_base = int(input(">>> Enter a from base: "))
-    to_base = int(input(">>> Enter a to base: "))
-    print(f"Answer: {convert_number_from_one_base_to_another(number, from_base, to_base)}")
+    mode = int(input("What you want:\n1) convert\n2) sum\n3) multiply\n>>> "))
+    if mode == 1:
+        number = input(">>> Enter a number: ")
+        from_base = int(input(">>> Enter a from base: "))
+        to_base = int(input(">>> Enter a to base: "))
+        print(f"Answer: {convert_number_from_one_base_to_another(number, from_base, to_base)}")
+    else:
+        number_1 = input(">>> Enter a number 1: ")
+        number_2 = input(">>> Enter a number 2: ")
+        base = int(input(">>> Enter a base: "))
+
+        if mode == 2:
+            result = from_base_to_dec(number_1, base) + from_base_to_dec(number_2, base)
+        else:
+            result = from_base_to_dec(number_1, base) * from_base_to_dec(number_2, base)
+
+        print(f"Answer: {from_dec_to_base(result, base)}")
