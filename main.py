@@ -40,7 +40,7 @@ def from_dec_to_base(num: int, base: int = 10, float_part_symbol_limit=300) -> s
 
     while not float(float_part).is_integer() and len(float_part_result) < float_part_symbol_limit:
         float_part *= base
-        float_part_result += str(int(float_part))
+        float_part_result += ALPHABET[int(float_part)]
         float_part -= int(float_part)
 
     additional = "..." if len(float_part_result) == float_part_symbol_limit else ""
